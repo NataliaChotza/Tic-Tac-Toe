@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="208dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="100dp"
+        android:enabled="true"
+        android:onClick="start_game"
+        android:text="START GAME"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/set_player"
+        android:layout_width="146dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="32dp"
+        android:editable="false"
+        android:text="Set who starts"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/game_layout"
+        android:layout_width="413dp"
+        android:layout_height="514dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="5dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/start_button">
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="87dp"
+            android:layout_height="93dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="25dp"
+            android:onClick="game"
+            android:text="_"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button4" />
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="87dp"
+            android:layout_height="93dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginTop="25dp"
+            android:onClick="game"
+            android:text="_"
+            app:layout_constraintStart_toEndOf="@+id/button7"
+            app:layout_constraintTop_toBottomOf="@+id/button5" />
+
+        <Button
+            android:id="@+id/button9"
+            android:layout_width="87dp"
+            android:layout_height="93dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="37dp"
+            android:onClick="game"
+            android:text="_"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button8"
+            app:layout_constraintTop_toBottomOf="@+id/button6" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="87dp"
+            android:layout_height="93dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginTop="25dp"
+            android:onClick="game"
+            android:text="_"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button1" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="87dp"
+            android:layout_height="93dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginTop="25dp"
+            android:onClick="game"
+            android:text="_"
+            app:layout_constraintStart_toEndOf="@+id/button4"
+            app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="87dp"
+            android:layout_height="93dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="37dp"
+            android:onClick="game"
+
+            android:text="_"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button5"
+            app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="87dp"
+            android:layout_height="93dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="37dp"
+            android:onClick="game"
+            android:text="_"
+            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="87dp"
+            android:layout_height="93dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="37dp"
+            android:onClick="game"
+            android:text="_"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="87dp"
+            android:layout_height="93dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginTop="25dp"
+            android:onClick="game"
+            android:text="_"
+            app:layout_constraintStart_toEndOf="@+id/button1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/new_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Game"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button7"
+            app:layout_constraintVertical_bias="0.27" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ToggleButton
+        android:id="@+id/switch_player"
+        android:layout_width="83dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="100dp"
+        android:onClick="switch_player"
+        android:text="ToggleButton"
+        android:textOff="X"
+        android:textOn="O"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
