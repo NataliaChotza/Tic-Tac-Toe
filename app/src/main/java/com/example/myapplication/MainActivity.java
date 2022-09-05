@@ -3,14 +3,9 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.text.Layout;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -27,7 +22,6 @@ ConstraintLayout gameLayout;
         setContentView(R.layout.activity_main);
         gameLayout=findViewById(R.id.game_layout);
         hideView(gameLayout);
-
     }
 
     public void switch_player(View view){
@@ -38,14 +32,7 @@ ConstraintLayout gameLayout;
         else{
             switch_player.setText("X");
         }
-        ((Button)findViewById(R.id.new_game)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                switch_player.setEnabled(true);
-                getButton_list().stream().forEach(button -> button.setEnabled(true));
-                getButton_list().stream().forEach(button -> button.setText("_"));
-            }
-        });
+
     }
     int turn = 0;
 
@@ -61,42 +48,65 @@ ConstraintLayout gameLayout;
 
 
     public void game(View view){
-        ToggleButton switch_player = findViewById(R.id.switch_player);
-        String player1_id = (String) switch_player.getText();
+        ToggleButton switchPlayer = findViewById(R.id.switch_player);
+        if(switchPlayer.getVisibility()==View.INVISIBLE){
+            switchPlayer.setVisibility(View.VISIBLE);
+        }
+        String player1_id = (String) switchPlayer.getText();
         String player2_id ="" ;
-        switch_player.setVisibility(View.INVISIBLE);
+        switchPlayer.setVisibility(View.INVISIBLE);
         ((TextView)findViewById(R.id.set_player)).setVisibility(View.INVISIBLE);
 
-        Button clicked_button = (Button)view;
+        Button clickedButton = (Button) view;
         if(Objects.equals(player1_id, "X")){
             player2_id="O";
         }else{
             player2_id="X";
         }
-
+        TextView info = ((TextView)findViewById(R.id.info));
         if(turn%2==0){
-            clicked_button.setText(player1_id);
-            Toast.makeText(this,"Player2 turn "+ player2_id,Toast.LENGTH_SHORT).show();
+            clickedButton.setText(player1_id);
+            info.setText("Player2 turn "+ player2_id);
 
         }else{
-            clicked_button.setText(player2_id);
-            Toast.makeText(this,"Player1 turn "+player1_id,Toast.LENGTH_LONG).show();
+            clickedButton.setText(player2_id);
+            info.setText("Player1 turn "+player1_id);
 
         }
-        clicked_button.setEnabled(false);
-        add_button(clicked_button);
+        clickedButton.setEnabled(false);
+        addButton(clickedButton);
         turn++;
 
+        //the winning part
+
+
+
+
 
     }
+    public void newGame(View view){
+        TextView info = ((TextView)findViewById(R.id.info));
+            showView(findViewById(R.id.set_player));
+            showView(findViewById(R.id.switch_player));
+            hideView(findViewById(R.id.game_layout));
+            info.setText(" ");
+            for(Button button :getButtonList()){
+                button.setText("_");
+                button.setEnabled(true);
 
-    List<Button> button_list = new ArrayList<>();
-
-    public void add_button(Button button){
-        button_list.add(button);
+            }
+            getButtonList().clear();
     }
-    public List<Button> getButton_list(){
-        return button_list;
+
+
+    List<Button> buttonList = new ArrayList<>();
+
+    public void addButton(Button button){
+        buttonList.add(button);
+
+    }
+    public List<Button> getButtonList(){
+        return buttonList;
     }
 
 }

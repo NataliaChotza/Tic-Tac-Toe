@@ -180,7 +180,7 @@
             app:layout_constraintVertical_bias="0.307" />
 
         <Button
-            android:id="@+id/new_game"
+            android:id="@+id/newGameButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Game"

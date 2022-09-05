@@ -12,12 +12,13 @@
         android:layout_width="208dp"
         android:layout_height="61dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="120dp"
         android:layout_marginEnd="100dp"
         android:enabled="true"
         android:onClick="start_game"
         android:text="START GAME"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,16 +36,18 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/game_layout"
-        android:layout_width="413dp"
-        android:layout_height="514dp"
+        android:layout_width="409dp"
+        android:layout_height="583dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
+        android:layout_marginBottom="150dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/start_button">
+        app:layout_constraintTop_toBottomOf="@+id/start_button"
+        app:layout_constraintVertical_bias="0.087">
 
         <Button
             android:id="@+id/button7"
@@ -155,16 +158,21 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/new_game"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/newGameButton"
+            android:layout_width="339dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="160dp"
+            android:onClick="newGame"
             android:text="New Game"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.12"
+            app:layout_constraintHorizontal_bias="0.52"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button7"
-            app:layout_constraintVertical_bias="0.27" />
+            app:layout_constraintVertical_bias="0.297" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -180,5 +188,15 @@
         android:textOn="O"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/start_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
