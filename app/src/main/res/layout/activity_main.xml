@@ -165,7 +165,6 @@
         android:layout_height="50dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="100dp"
-        android:onClick="switch_player"
         android:text="ToggleButton"
         android:textOff="X"
         android:textOn="O"

@@ -29,20 +29,48 @@ public class MainActivity extends AppCompatActivity {
     List<Button> buttonListPl1 = new ArrayList<>();
     List<Button> buttonListPl2 = new ArrayList<>();
     List<ButtonNodeSequence> bns = new ArrayList<>();
-
-    int turn = 0;
+    String player1_id;
+    String player2_id;
+    ToggleButton switchPlayer;
+    TextView info;
+    int turn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         gameLayout=findViewById(R.id.game_layout);
+        switchPlayer= findViewById(R.id.switch_player);
+        player1_id="";
+
+        player2_id="";
+        info= ((TextView)findViewById(R.id.info));
         hideView(gameLayout);
+
+        turn =0;
         setRules();
     }
 
+    public void setPlayerID(){
+        ((Button)findViewById(R.id.start_button)).setEnabled(true);
+        player1_id = (String) switchPlayer.getText();
+        if(Objects.equals(player1_id, "X")){
+            player2_id="O";
+        }else{
+            player2_id="X";
+        }
+
+
+    }
     public void start_game(View view){
+        info.setText("");
         turn=0;
+        setPlayerID();
+        switchPlayer.setVisibility(View.INVISIBLE);
+
+        ((TextView)findViewById(R.id.set_player)).setVisibility(View.INVISIBLE);
         showView(gameLayout);
+        ((Button)findViewById(R.id.start_button)).setEnabled(false);
     }
     public void showView(View view){
         view.setVisibility(View.VISIBLE);
@@ -51,33 +79,11 @@ public class MainActivity extends AppCompatActivity {
         view.setVisibility(View.INVISIBLE);
     }
 
-    public void switch_player(View view){
-        ToggleButton switch_player = (ToggleButton) view;
-        if(switch_player.isChecked()){
-            switch_player.setText("O");
-        }
-        else{
-            switch_player.setText("X");
-        }
-
-    }
-
     public void game(View view){
-        ToggleButton switchPlayer = findViewById(R.id.switch_player);
-        if(switchPlayer.getVisibility()==View.INVISIBLE){
-            switchPlayer.setVisibility(View.VISIBLE);
-        }
-        String player1_id = (String) switchPlayer.getText();
-        String player2_id ="" ;
-        switchPlayer.setVisibility(View.INVISIBLE);
-        ((TextView)findViewById(R.id.set_player)).setVisibility(View.INVISIBLE);
+
         Button clickedButton = (Button) view;
-        if(Objects.equals(player1_id, "X")){
-            player2_id="O";
-        }else{
-            player2_id="X";
-        }
-        TextView info = ((TextView)findViewById(R.id.info));
+
+
         if(turn%2==0){
             clickedButton.setText(player1_id);
             buttonListPl1.add(clickedButton);
@@ -92,8 +98,20 @@ public class MainActivity extends AppCompatActivity {
         clickedButton.setEnabled(false);
 
         //Method informing and checking who won.
-        info = checkIfWinner(clickedButton, clickedButton.getText());
+        info = checkIfIsWinner(clickedButton, clickedButton.getText());
         turn++;
+        if(turn==9) {
+            if (buttonListPl1.stream().allMatch(button -> !button.isEnabled()) ||
+                    buttonListPl2.stream().allMatch(button -> !button.isEnabled())) {
+                info.setText("No winner!");
+                Log.d("Winner", "None ");
+                hideView(findViewById(R.id.game_layout));
+                showView(findViewById(R.id.switch_player));
+                showView(findViewById(R.id.set_player));
+                setPlayerID();
+                activateButtons();
+            }
+        }
     }
 
     public int getButtonId(Button clickedButton){
@@ -105,13 +123,10 @@ public class MainActivity extends AppCompatActivity {
     Set<int[]> nodeHolderSet = new HashSet<>();
     List<Button> winnerlist = new ArrayList<>();
 
-    public TextView checkIfWinner(Button clickedButton, CharSequence symbol) {//B1
+    public TextView checkIfIsWinner(Button clickedButton, CharSequence symbol) {//B1
         TextView info = (TextView) findViewById(R.id.info);
         String playerSymbol = String.valueOf(symbol);//X
         int playerId = getButtonId(clickedButton);//18=B1
-
-
-
 
         if (buttonListPl1.stream().filter(button -> button.getText() == playerSymbol).findAny().isPresent()) {
             winnerlist = buttonListPl1;
@@ -157,20 +172,24 @@ public class MainActivity extends AppCompatActivity {
                 for(Integer win : winnerIds) {
                     if((win==Integer.valueOf(i[j]))) {
                         winner++;
-                    }
+
+                    } System.out.println(winner);
                 }
                 if(winner==3){
                     info.setText("Player " + playerSymbol + " won!");
                     Log.d("Winner", "Player " + playerSymbol);
                     hideView(findViewById(R.id.game_layout));
+                    showView(findViewById(R.id.switch_player));
+                    showView(findViewById(R.id.set_player));
+                    setPlayerID();
                     activateButtons();
-                    System.out.println(winner);
                     break;
+                }
                 }
 
             }
 
-        }
+
         nodeHolderSet.clear();
        return info;
     }
