@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        setTitle("Tic-Tac-Toe");
         gameLayout=findViewById(R.id.game_layout);
         switchPlayer= findViewById(R.id.switch_player);
         player1_id="";
@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     public void start_game(View view){
         info.setText("");
         turn=0;
@@ -72,17 +73,19 @@ public class MainActivity extends AppCompatActivity {
         showView(gameLayout);
         ((Button)findViewById(R.id.start_button)).setEnabled(false);
     }
+
     public void showView(View view){
         view.setVisibility(View.VISIBLE);
     }
+
     public void hideView(View view){
         view.setVisibility(View.INVISIBLE);
     }
 
+
     public void game(View view){
 
         Button clickedButton = (Button) view;
-
 
         if(turn%2==0){
             clickedButton.setText(player1_id);
@@ -114,9 +117,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public int getButtonId(Button clickedButton){
-        String bName = String.valueOf(clickedButton.getId());
+    public int getButtonId(Button button){
+        String bName = String.valueOf(button.getId());
         int buttonId = Integer.parseInt(bName.substring(8,10));
+        System.out.println("ButtonID->" +buttonId);
         return buttonId;
     }
 
@@ -138,28 +142,36 @@ public class MainActivity extends AppCompatActivity {
         }
 
         for(ButtonNodeSequence bNS : bns) {//18
-            if (playerSymbol.matches(bNS.getSymbol())) {
+            //if (playerSymbol.matches(bNS.getSymbol())) {
                 int[] nodeHolder = new int[3];
                 if (playerId == bNS.getId()) {
                     nodeHolder[0] = playerId;
-                    nodeHolder[1] = bNS.getPrevNode().getId();
-                    nodeHolder[2] = bNS.getNextNode().getId();
+                    nodeHolder[1] = bNS.getPrevNode();
+                    nodeHolder[2] = bNS.getNextNode();
 
-                } else if (playerId == bNS.getNextNode().getId()) {
+                } else if (playerId == bNS.getNextNode()) {
                     nodeHolder[0] = playerId;
                     nodeHolder[1] = bNS.getId();
-                    nodeHolder[2] = bNS.getPrevNode().getId();
+                    nodeHolder[2] = bNS.getPrevNode();
 
-                } else if (playerId == bNS.getPrevNode().getId()) {
+                } else if (playerId == bNS.getPrevNode()) {
                     nodeHolder[0] = playerId;
                     nodeHolder[1] = bNS.getId();
-                    nodeHolder[2] = bNS.getNextNode().getId();
+                    nodeHolder[2] = bNS.getNextNode();
                 }
 
-
                 nodeHolderSet.add(nodeHolder);
-            }
-        } Log.d("CheckingRules", "CheckedRules");
+
+           // }
+        }
+        for (int[] n: nodeHolderSet) {
+            for(int i=0;i<n.length;i++){
+            System.out.print(n[i]+" ");
+        }
+            System.out.println();
+        }
+
+         Log.d("CheckingRules", "CheckedRules");
         List<Integer> winnerIds = new ArrayList<>();
         for (Button b : winnerlist) {
             winnerIds.add(getButtonId(b));
@@ -194,9 +206,6 @@ public class MainActivity extends AppCompatActivity {
        return info;
     }
 
-
-
-
     public void activateButtons(){
         for(Button button :buttonListPl1){
             button.setText("_");
@@ -211,88 +220,31 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-   public void setRules(){
+   public void setRules() {
 
        //winning matches 18-19-20  18-21-24 18-22-26 19-22-25 20-23-26 20-22-24 21-22-23 24-25-26
-       ButtonNodeSequence rule1 = new ButtonNodeSequence(18,"X");
-       rule1.setNextNode(new ButtonNodeSequence(19,"X"));
-       rule1.setPrevNode(new ButtonNodeSequence(20,"X"));
+       ButtonNodeSequence rule1 = new ButtonNodeSequence(19, 20, 21);
        bns.add(rule1);
 
-       ButtonNodeSequence rule2 = new ButtonNodeSequence(18,"X");
-       rule2.setNextNode(new ButtonNodeSequence(21,"X"));
-       rule2.setPrevNode(new ButtonNodeSequence(24,"X"));
+       ButtonNodeSequence rule2 = new ButtonNodeSequence(19, 22, 25);
        bns.add(rule2);
 
-       ButtonNodeSequence rule3 = new ButtonNodeSequence(18,"X");
-       rule3.setNextNode(new ButtonNodeSequence(22,"X"));
-       rule3.setPrevNode(new ButtonNodeSequence(26,"X"));
+       ButtonNodeSequence rule3 = new ButtonNodeSequence(19, 23, 27);
        bns.add(rule3);
 
-       ButtonNodeSequence rule4 = new ButtonNodeSequence(19,"X");
-       rule4.setNextNode(new ButtonNodeSequence(22,"X"));
-       rule4.setPrevNode(new ButtonNodeSequence(25,"X"));
+       ButtonNodeSequence rule4 = new ButtonNodeSequence(20, 23, 26);
        bns.add(rule4);
 
-       ButtonNodeSequence rule5 = new ButtonNodeSequence(20,"X");
-       rule5.setNextNode(new ButtonNodeSequence(23,"X"));
-       rule5.setPrevNode(new ButtonNodeSequence(26,"X"));
+       ButtonNodeSequence rule5 = new ButtonNodeSequence(21, 24, 27);
        bns.add(rule5);
 
-       ButtonNodeSequence rule6 = new ButtonNodeSequence(20,"X");
-       rule6.setNextNode(new ButtonNodeSequence(22,"X"));
-       rule6.setPrevNode(new ButtonNodeSequence(24,"X"));
+       ButtonNodeSequence rule6 = new ButtonNodeSequence(21, 23, 25);
        bns.add(rule6);
 
-       ButtonNodeSequence rule7 = new ButtonNodeSequence(21,"X");
-       rule7.setNextNode(new ButtonNodeSequence(22,"X"));
-       rule7.setPrevNode(new ButtonNodeSequence(23,"X"));
+       ButtonNodeSequence rule7 = new ButtonNodeSequence(22, 23, 24);
        bns.add(rule7);
 
-       ButtonNodeSequence rule8 = new ButtonNodeSequence(24,"X");
-       rule8.setNextNode(new ButtonNodeSequence(25,"X"));
-       rule8.setPrevNode(new ButtonNodeSequence(26,"X"));
+       ButtonNodeSequence rule8 = new ButtonNodeSequence(25, 26, 27);
        bns.add(rule8);
-
-       ButtonNodeSequence rule11 = new ButtonNodeSequence(18,"O");
-       rule11.setNextNode(new ButtonNodeSequence(19,"O"));
-       rule11.setPrevNode(new ButtonNodeSequence(20,"O"));
-       bns.add(rule11);
-
-       ButtonNodeSequence rule12 = new ButtonNodeSequence(18,"O");
-       rule12.setNextNode(new ButtonNodeSequence(21,"O"));
-       rule12.setPrevNode(new ButtonNodeSequence(24,"O"));
-       bns.add(rule12);
-
-       ButtonNodeSequence rule13 = new ButtonNodeSequence(18,"O");
-       rule13.setNextNode(new ButtonNodeSequence(22,"O"));
-       rule13.setPrevNode(new ButtonNodeSequence(26,"O"));
-       bns.add(rule13);
-
-       ButtonNodeSequence rule14 = new ButtonNodeSequence(19,"O");
-       rule14.setNextNode(new ButtonNodeSequence(22,"O"));
-       rule14.setPrevNode(new ButtonNodeSequence(25,"O"));
-       bns.add(rule14);
-
-
-       ButtonNodeSequence rule15 = new ButtonNodeSequence(20,"O");
-       rule15.setNextNode(new ButtonNodeSequence(23,"O"));
-       rule15.setPrevNode(new ButtonNodeSequence(26,"O"));
-       bns.add(rule15);
-
-       ButtonNodeSequence rule16 = new ButtonNodeSequence(20,"O");
-       rule16.setNextNode(new ButtonNodeSequence(22,"O"));
-       rule16.setPrevNode(new ButtonNodeSequence(24,"O"));
-       bns.add(rule16);
-
-       ButtonNodeSequence rule17 = new ButtonNodeSequence(21,"O");
-       rule17.setNextNode(new ButtonNodeSequence(22,"O"));
-       rule17.setPrevNode(new ButtonNodeSequence(23,"O"));
-       bns.add(rule17);
-
-       ButtonNodeSequence rule18 = new ButtonNodeSequence(24,"O");
-       rule18.setNextNode(new ButtonNodeSequence(25,"O"));
-       rule18.setPrevNode(new ButtonNodeSequence(26,"O"));
-       bns.add(rule18);
    }
 }

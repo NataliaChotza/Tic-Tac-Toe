@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kółko i Krzyżyk</string>
+    <string name="starting_player">Kto zaczyna?</string>
+    <string name="start_button">ROZPOCZNIJ GRĘ</string>
+    <string name="game_button">_</string>
+    <string name="toggle_button_off">X</string>
+    <string name="toggle_button_on">O</string>
+    <string name="play_with_comp">Gra z komputerem</string>
+    <string name="multiplayer">Gra we dwoje</string>
+    <string name="game_name">KÓŁKO i KRZYŻYK</string>
+</resources>

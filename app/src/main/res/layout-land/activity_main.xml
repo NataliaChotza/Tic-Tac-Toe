@@ -14,49 +14,56 @@
 
 
 
+
+
+
+
+
+
+
+
     ]]>
 
     <TextView
         android:id="@+id/info2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="27dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/set_player" />
 
     <Button
         android:id="@+id/start_button"
-        android:layout_width="wrap_content"
-        android:layout_height="81dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="174dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="72dp"
         android:onClick="start_game"
         android:text="START GAME"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/info2" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/game_layout"
-        android:layout_width="406dp"
-        android:layout_height="457dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_width="393dp"
+        android:layout_height="329dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/start_button">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <Button
             android:id="@+id/button7"
             android:layout_width="87dp"
             android:layout_height="93dp"
             android:layout_marginStart="36dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="8dp"
             android:onClick="game"
             android:text="_"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +74,7 @@
             android:layout_width="87dp"
             android:layout_height="93dp"
             android:layout_marginStart="37dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="8dp"
             android:onClick="game"
             android:text="_"
             app:layout_constraintStart_toEndOf="@+id/button7"
@@ -78,7 +85,7 @@
             android:layout_width="87dp"
             android:layout_height="93dp"
             android:layout_marginStart="37dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="37dp"
             android:onClick="game"
             android:text="_"
@@ -91,7 +98,7 @@
             android:layout_width="87dp"
             android:layout_height="93dp"
             android:layout_marginStart="37dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="8dp"
             android:onClick="game"
             android:text="_"
             app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +109,7 @@
             android:layout_width="87dp"
             android:layout_height="93dp"
             android:layout_marginStart="37dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="8dp"
             android:onClick="game"
             android:text="_"
             app:layout_constraintStart_toEndOf="@+id/button4"
@@ -113,7 +120,7 @@
             android:layout_width="87dp"
             android:layout_height="93dp"
             android:layout_marginStart="37dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="37dp"
             android:onClick="game"
 
@@ -165,13 +172,13 @@
         android:id="@+id/set_player"
         android:layout_width="139dp"
         android:layout_height="55dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
         android:editable="false"
         android:text="Set who starts"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/info2"
-        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintEnd_toStartOf="@+id/switch_player2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -180,12 +187,13 @@
         android:layout_width="83dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:textOff="@string/toggle_button_off"
         android:textOn="@string/toggle_button_on"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/set_player"
+        app:layout_constraintHorizontal_bias="0.289"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

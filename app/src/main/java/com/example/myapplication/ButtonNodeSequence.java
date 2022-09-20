@@ -1,40 +1,35 @@
 package com.example.myapplication;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class ButtonNodeSequence {
     protected int id;
-    protected String symbol;
-    protected ButtonNodeSequence nextNode,prevNode;
-    public ButtonNodeSequence(int id,String symbol){
-        setId(id);
-        setSymbol(symbol);
-    }
-    public void setNextNode(ButtonNodeSequence nextNode){
-        this.nextNode=nextNode;
-    }
-    public void setPrevNode(ButtonNodeSequence prevNode){
-        this.prevNode=prevNode;
-    }
-    public ButtonNodeSequence getNextNode(){
-        return nextNode;
-    }
-    public ButtonNodeSequence getPrevNode(){
-        return prevNode;
-    }
+    protected int nextNode,prevNode;
+    protected List<Integer>buttonNodeSequenceList = new ArrayList<>();
 
-    public String getSymbol() {
-        return this.symbol;
-    }
 
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
-    }
-
-    public void setId(int id){
+    public ButtonNodeSequence(int id,int nextNode,int prevNode){
         this.id=id;
+        this.nextNode=nextNode;
+        this.prevNode=prevNode;
+        buttonNodeSequenceList.add(this.id);
+        buttonNodeSequenceList.add(this.nextNode);
+        buttonNodeSequenceList.add(this.prevNode);
     }
+
     public int getId(){
         return id;
     }
 
+    public int getNextNode() {
+        return nextNode;
+    }
 
+    public int getPrevNode() {
+        return prevNode;
+    }
+    public List<Integer> getButtonNodeSequenceList() {
+        return buttonNodeSequenceList;
+    }
 }
